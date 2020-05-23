@@ -31,8 +31,8 @@ public class Enseignant extends Utilisateur {
      * @param password
      * @param droit
      */
-    public Enseignant(Cours cours, int id, String nom, String prenom, String email, String password) {
-        super(id, nom, prenom, email, password, 3);
+    public Enseignant(Cours cours, int id, String nom, String prenom, String email, String password, int droit) {
+        super(id, nom, prenom, email, password, droit);
         this.cours = cours;
     }
 
@@ -53,6 +53,10 @@ public class Enseignant extends Utilisateur {
         this.cours = cours;
     }
     
-    
+    @Override
+    public String toString()
+    {
+        return "cours: "+ this.cours+ "id: " + this.id + "nom:" + this.nom + "prenom: "+this.prenom + "email: "+ this.email + "password: "+ this.password;
+    }
 
 }

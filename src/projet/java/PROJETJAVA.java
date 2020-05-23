@@ -5,7 +5,14 @@
  */
 package projet.java;
 
+import DataAcessObject.Connect;
+import DataAcessObject.DAO;
+import DataAcessObject.DAOenseignant;
+import DataAcessObject.DAOutilisateur;
+import Modele.Enseignant;
 import Modele.Utilisateur;
+import java.sql.Connection;
+
 
 /**
  *
@@ -17,9 +24,17 @@ public class PROJETJAVA {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Utilisateur utilisateur = new Utilisateur();
-        System.out.println(utilisateur.getid());
+      
+        DAO<Enseignant> enseignantdao;
+        enseignantdao = new DAOenseignant(new Connect().getConnection());
         
+        for(int i=0; i<10; i++)
+        {
+            Enseignant enseignant;
+            enseignant = enseignantdao.find(i);
+            System.out.println("Enseignant:" +enseignant.toString());
+        }
+   
     }
         
     

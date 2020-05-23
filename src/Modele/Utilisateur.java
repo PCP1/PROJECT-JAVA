@@ -47,7 +47,7 @@ public class Utilisateur {
      *Constructeur surchargé
      * @param utilisateur
      */
-    public Utilisateur( Utilisateur utilisateur)
+  /*  public Utilisateur( Utilisateur utilisateur)
     {
         this.id = utilisateur.id;
         this.nom = utilisateur.nom;
@@ -55,7 +55,11 @@ public class Utilisateur {
         this.email = utilisateur.email;
         this.password = utilisateur.password;
         this.droit = utilisateur.droit;
-    }
+    }*/
+
+   
+
+    
     
     //////////////////////////////// GET AND SET///////////////////////////////////
     
