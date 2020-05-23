@@ -10,12 +10,26 @@ package Modele;
  * @author pcane
  */
 public class Groupe {
+    private int id_groupe;
+    private String nom;
     
-    protected int id;
-    private String Nom;
-    private int Promotion;
+    /**
+     * Constructeur par defaut
+     */
+    public Groupe () {}
     
-    public class Promotion () {}
+    /**
+     * Constructeur surcharge
+     * @param id_groupe
+     * @param nom
+     */
+    public Groupe(int id_groupe, String nom)
+    {
+        this.id_groupe = id_groupe;
+        this.nom = nom;
+    }
+    
+   
     
     
 }

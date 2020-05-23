@@ -5,6 +5,8 @@
  */
 package projet.java;
 
+import Modele.Utilisateur;
+
 /**
  *
  * @author pcane
@@ -15,7 +17,10 @@ public class PROJETJAVA {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Utilisateur utilisateur = new Utilisateur();
+        System.out.println(utilisateur.getid());
+        
     }
+        
     
 }

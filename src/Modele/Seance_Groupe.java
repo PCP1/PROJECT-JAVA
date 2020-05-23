@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vue;
+package Modele;
 
 /**
  *
  * @author pcane
  */
-public class Fenetre {
+public class Seance_Groupe {
+    private int Senace;
+    private int Enseignant;
     
+    public Seance_Groupe()
+    {
+        
+    }
 }
