@@ -6,16 +6,18 @@
 package DataAcessObject;
 
 import Modele.Etudiant;
+import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author pcane
  */
 public class DAOetudiant extends DAO<Etudiant>{
+
+    public DAOetudiant(Connection conn) {
+        super(conn);
+    }
 
     @Override
     public boolean create(Etudiant object) {
@@ -34,7 +36,8 @@ public class DAOetudiant extends DAO<Etudiant>{
 
     @Override
     public Etudiant find(int id) {
-        Etudiant etudiant new Etudiant();
+        Etudiant etudiant = null;
+        new Etudiant();
         
         try{
             ResultSet result = this.connect.createStatement(
@@ -44,7 +47,7 @@ public class DAOetudiant extends DAO<Etudiant>{
             if(result.first())
             {
                 etudiant =new Etudiant(
-                        new Modele.Cours(),
+                        result.getInt("Numero"),
                         id, 
                         result.getString("utilisateur.Nom"), 
                         result.getString("Prenom"),
