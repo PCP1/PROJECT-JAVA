@@ -10,11 +10,46 @@ package Modele;
  * @author pcane
  */
 public class Site {
-    protected int ID;
-    private String Nom;
+    protected int id_site;
+    private String nom_site;
     
-    
+    /**
+     *Constructeur par defaut
+     */
     public Site()
     {
     }
+    
+    /**
+     *Constructeur surcharge
+     * @param id_site
+     * @param nom_site
+     */
+    public Site(int id_site, String nom_site)
+    {
+        this.nom_site=nom_site;
+        this.id_site=id_site;
+        
+    }
+    
+    ////////////////// GETTER AND SETTER ////////////////////////
+    
+    public int getid_site()
+    {
+        return id_site;
+    }
+    public void setid_site(int id_site)
+    {
+        this.id_site=id_site;
+    }
+    
+    public String getnom_site()
+    {
+        return nom_site;
+    }
+    public void stenom_site(String nom_site)
+    {
+        this.nom_site=nom_site;
+    }
+    
 }

@@ -30,6 +30,12 @@ public class Cours {
         this.id=id;
         this.nom=nom;
     }
+
+    public Cours() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
     
     ///////////////////////// GETTER AND SETTER ///////////////////////////////////
     

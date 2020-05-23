@@ -9,9 +9,9 @@ package Modele;
  *
  * @author pcane
  */
-public class Groupe {
+public class Groupe extends Enseignant{
     private int id_groupe;
-    private String nom;
+    private String nom_groupe;
     
     /**
      * Constructeur par defaut
@@ -21,15 +21,34 @@ public class Groupe {
     /**
      * Constructeur surcharge
      * @param id_groupe
-     * @param nom
+     * @param nom_groupe
      */
-    public Groupe(int id_groupe, String nom)
+    public Groupe(int id_groupe, String nom_groupe)
     {
         this.id_groupe = id_groupe;
-        this.nom = nom;
+        this.nom_groupe = nom_groupe;
     }
     
+    
    
+   /////////////////////// GETTER AND SETTER /////////////////////////////
     
+    public int getid_groupe()
+    {
+        return id_groupe;
+    }
     
+    public void setid_groupe(int id_groupe)
+    {
+        this.id_groupe=id_groupe;
+    }
+    public String getnom_groupe()
+    {
+        return nom_groupe;
+    }
+    
+    public void setnom_groupe(String nom_groupe)
+    {
+        this.nom_groupe=nom_groupe;
+    }
 }

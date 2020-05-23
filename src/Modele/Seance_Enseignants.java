@@ -10,7 +10,7 @@ package Modele;
  * @author pcane
  */
 public class Seance_Enseignants {
-    private int Seance;
+    
     private int Enseignant;
     
     public Seance_Enseignants()
