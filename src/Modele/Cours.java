@@ -10,8 +10,8 @@ package Modele;
  * @author pcane
  */
 public class Cours {
-    protected int id;
-    private String nom;
+    protected int id_cours;
+    private String nom_cours;
     
     /**
      *Constructeur par defaut
@@ -22,13 +22,13 @@ public class Cours {
      
     /**
      *Constructeur surchargé
-     * @param id
-     * @param nom
+     * @param id_cours
+     * @param nom_cours
      */
-    public Cours(int id, String nom)
+    public Cours(int id_cours, String nom_cours)
     {
-        this.id=id;
-        this.nom=nom;
+        this.id_cours=id_cours;
+        this.nom_cours=nom_cours;
     }
 
     /*public Cours() {
@@ -39,23 +39,23 @@ public class Cours {
     
     ///////////////////////// GETTER AND SETTER ///////////////////////////////////
     
-    public int getid()
+    public int getid_cours()
     {
-        return id;
+        return id_cours;
     }
     
-    public void setid(int id)
+    public void setid(int id_cours)
     {
-        this.id=id;
+        this.id_cours=id_cours;
     }
     
-    public String getnom()
+    public String getnom_cours()
     {
-        return nom;
+        return nom_cours;
     }
     
-    public void setnom(String nom)
+    public void setnom(String nom_cours)
     {
-        this.nom=nom;
+        this.nom_cours=nom_cours;
     }
 }

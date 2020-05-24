@@ -51,9 +51,10 @@ public class DAOenseignant extends DAO<Enseignant>{
             {
                 
                 enseignant = new Enseignant(
-                        new Modele.Cours(),
-                        id, 
-                        result.getString("utilisateur.Nom"), 
+                        result.getString("nom_cours"),
+                        result.getInt("id_cours"),
+                        id,
+                        result.getString("utilisateur.Nom"),
                         result.getString("Prenom"),
                         result.getString("Email"),
                         result.getString("Password"),

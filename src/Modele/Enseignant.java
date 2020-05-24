@@ -11,7 +11,8 @@ package Modele;
  */
 public class Enseignant extends Utilisateur {
 
-    private Cours cours;
+    private Cours nom_cours;
+    private Cours id_cours;
 
     /**
      * Constructeur par defaut
@@ -23,7 +24,8 @@ public class Enseignant extends Utilisateur {
     /**
      * Constructeur surcharge
      *
-     * @param cours
+     * @param nom_cours
+     * @param id_cours
      * @param id
      * @param nom
      * @param prenom
@@ -31,32 +33,55 @@ public class Enseignant extends Utilisateur {
      * @param password
      * @param droit
      */
-    public Enseignant(Cours cours, int id, String nom, String prenom, String email, String password, int droit) {
+    public Enseignant(Cours nom_cours, Cours id_cours, int id, String nom, String prenom, String email, String password, int droit) {
         super(id, nom, prenom, email, password, droit);
-        this.cours = cours;
+        this.nom_cours = nom_cours;
+        this.id_cours = id_cours;
     }
+
+    
 
 //////////////////////////// GETTER AND SETTER ///////////////////////////////////////////////////////////
     /**
      *
      * @return
      */
-    public Cours getCours() {
-        return cours;
+    public Cours getnom_cours() {
+        return nom_cours;
     }
 
     /**
      *
-     * @param cours
+     * @param nom_cours
      */
-    public void setCours(Cours cours) {
-        this.cours = cours;
+    public void setnom_cours(Cours nom_cours) {
+        this.nom_cours = nom_cours;
     }
+    
+    /**
+     *
+     * @return
+     */
+    public Cours getid_cours()
+    {
+        return id_cours;
+    }
+    
+    /**
+     *
+     * @param id_cours
+     */
+    public void  setid_cours(Cours id_cours)
+    {
+        this.id_cours=id_cours;
+    }
+    
+    
     
     @Override
     public String toString()
     {
-        return "cours: "+ this.cours+ "id: " + this.id + "nom:" + this.nom + "prenom: "+this.prenom + "email: "+ this.email + "password: "+ this.password;
+        return "nom_cours: "+ this.nom_cours+ "id: " + this.id + "nom:" + this.nom + "prenom: "+this.prenom + "email: "+ this.email + "password: "+ this.password;
     }
 
 }
