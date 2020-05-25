@@ -9,9 +9,6 @@ import Modele.Cours;
 import Modele.Enseignant;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -45,21 +42,19 @@ public class DAOenseignant extends DAO<Enseignant>{
         try{
             ResultSet result =this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM `enseignant` INNER JOIN utilisateur ON enseignant.IDUtilisateur=utilisateur.IDUtilisateur WHERE Droit=3");
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM `enseignant` INNER JOIN utilisateur ON enseignant.ID_Utilisateur=utilisateur.ID_Utilisateur WHERE enseignant.ID_utilisateur= "+id);
                     
             if(result.first())
             {
                 
                 enseignant = new Enseignant(
-                        result.getString("nom_cours"),
-                        result.getInt("id_cours"),
-                        id,
+                        new Cours(result.getInt("ID_Cours"), "Traitement du signal"),
+                        id, 
                         result.getString("utilisateur.Nom"),
-                        result.getString("Prenom"),
-                        result.getString("Email"),
-                        result.getString("Password"),
-                        result.getInt("Droit")
-    
+                        result.getString("utilisateur.Prenom"),
+                        result.getString("utilisateur.Email"),
+                        result.getString("utilisateur.Password"),
+                        result.getInt("utilisateur.Droit")
                         ); 
             }
         } catch (Exception e) {

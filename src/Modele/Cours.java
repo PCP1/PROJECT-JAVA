@@ -31,10 +31,12 @@ public class Cours {
         this.nom_cours=nom_cours;
     }
 
-    /*public Cours() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public String toString()
+    {
+        return "cours:" + this.id_cours+"nom du cours" + this.nom_cours;
     }
-*/
+
    
     
     ///////////////////////// GETTER AND SETTER ///////////////////////////////////

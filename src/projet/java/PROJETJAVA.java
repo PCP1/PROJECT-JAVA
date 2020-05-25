@@ -8,10 +8,7 @@ package projet.java;
 import DataAcessObject.Connect;
 import DataAcessObject.DAO;
 import DataAcessObject.DAOenseignant;
-import DataAcessObject.DAOutilisateur;
 import Modele.Enseignant;
-import Modele.Utilisateur;
-import java.sql.Connection;
 
 
 /**
@@ -28,14 +25,14 @@ public class PROJETJAVA {
         DAO<Enseignant> enseignantdao;
         enseignantdao = new DAOenseignant(new Connect().getConnection());
         
-        for(int i=0; i<10; i++)
-        {
+       
+        
             Enseignant enseignant;
-            enseignant = enseignantdao.find(i);
+            enseignant = enseignantdao.find(1);
             System.out.println("Enseignant:" +enseignant.toString());
         }
    
     }
         
     
-}
+

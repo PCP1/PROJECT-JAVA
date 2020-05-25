@@ -11,8 +11,7 @@ package Modele;
  */
 public class Enseignant extends Utilisateur {
 
-    private Cours nom_cours;
-    private Cours id_cours;
+    private Cours cours;
 
     /**
      * Constructeur par defaut
@@ -24,8 +23,7 @@ public class Enseignant extends Utilisateur {
     /**
      * Constructeur surcharge
      *
-     * @param nom_cours
-     * @param id_cours
+     * @param cours
      * @param id
      * @param nom
      * @param prenom
@@ -33,11 +31,13 @@ public class Enseignant extends Utilisateur {
      * @param password
      * @param droit
      */
-    public Enseignant(Cours nom_cours, Cours id_cours, int id, String nom, String prenom, String email, String password, int droit) {
+    public Enseignant(Cours cours, int id, String nom, String prenom, String email, String password, int droit) {
         super(id, nom, prenom, email, password, droit);
-        this.nom_cours = nom_cours;
-        this.id_cours = id_cours;
+        this.cours=cours;
+     
     }
+
+    
 
     
 
@@ -46,34 +46,16 @@ public class Enseignant extends Utilisateur {
      *
      * @return
      */
-    public Cours getnom_cours() {
-        return nom_cours;
+    public Cours getcours() {
+        return cours;
     }
 
     /**
      *
-     * @param nom_cours
+     * @param cours
      */
-    public void setnom_cours(Cours nom_cours) {
-        this.nom_cours = nom_cours;
-    }
-    
-    /**
-     *
-     * @return
-     */
-    public Cours getid_cours()
-    {
-        return id_cours;
-    }
-    
-    /**
-     *
-     * @param id_cours
-     */
-    public void  setid_cours(Cours id_cours)
-    {
-        this.id_cours=id_cours;
+    public void setcours(Cours cours) {
+        this.cours = cours;
     }
     
     
@@ -81,7 +63,7 @@ public class Enseignant extends Utilisateur {
     @Override
     public String toString()
     {
-        return "nom_cours: "+ this.nom_cours+ "id: " + this.id + "nom:" + this.nom + "prenom: "+this.prenom + "email: "+ this.email + "password: "+ this.password;
+        return "cours: "+ this.cours.getid_cours()+"nom du cours: "+this.cours.getnom_cours()+ "id: " + this.id + "nom:" + this.nom + "prenom: "+this.prenom + "email: "+ this.email + "password: "+ this.password;
     }
 
 }
