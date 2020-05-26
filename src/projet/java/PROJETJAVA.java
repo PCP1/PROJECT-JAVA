@@ -27,8 +27,9 @@ public class PROJETJAVA {
         
        
         
-            Enseignant enseignant;
-            enseignant = enseignantdao.find(1);
+            Enseignant enseignant = new Enseignant();
+            enseignant.setid(1);
+             enseignantdao.delete(enseignant);
             System.out.println("Enseignant:" +enseignant.toString());
         }
    

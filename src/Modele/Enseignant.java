@@ -63,7 +63,7 @@ public class Enseignant extends Utilisateur {
     @Override
     public String toString()
     {
-        return "cours: "+ this.cours.getid_cours()+"nom du cours: "+this.cours.getnom_cours()+ "id: " + this.id + "nom:" + this.nom + "prenom: "+this.prenom + "email: "+ this.email + "password: "+ this.password;
+        return "cours: "+ this.cours.getid_cours()+ " nom du cours: "+this.cours.getnom_cours()+ " id: " + this.id + " nom:" + this.nom + " prenom: " + this.prenom + " email: " + this.email + " password: "+ this.password;
     }
 
 }
