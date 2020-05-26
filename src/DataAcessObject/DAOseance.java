@@ -6,12 +6,17 @@
 package DataAcessObject;
 
 import Modele.Seance;
+import java.sql.Connection;
 
 /**
  *
  * @author pcane
  */
 public class DAOseance extends DAO<Seance>{
+
+    public DAOseance(Connection conn) {
+        super(conn);
+    }
 
     @Override
     public boolean create(Seance object) {
