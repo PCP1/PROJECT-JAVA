@@ -7,6 +7,7 @@ package DataAcessObject;
 
 import Modele.Cours;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -18,24 +19,48 @@ import java.util.logging.Logger;
  */
 public class DAOcours extends DAO<Cours>{
 
+    
+    private static final String DELETE_QUERY="DELETE FROM `cours` WHERE cours.ID_Cours= ?";
+    private static final String INSERT_QUERY="INSERT INTO cours( Nom_Cours) VALUES( ?)";
+   
     public DAOcours(Connection conn) {
         super(conn);
     }
 
     @Override
-    public boolean create(Cours object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean create(Cours cours) {
+        try{
+            PreparedStatement ps = this.connect.prepareStatement(INSERT_QUERY);
+            ps.setString(1, cours.getnom_cours());
+            
+            ps.executeUpdate();
+            System.out.println("successfull insertion");
+            
+    }   catch (SQLException ex) {
+            Logger.getLogger(DAOcours.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override
-    public boolean delete(Cours object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean delete(Cours cours) {
+        try{
+            PreparedStatement ps = this.connect.prepareStatement(DELETE_QUERY);
+            ps.setInt(1, cours.getid_cours());
+            int row = ps.executeUpdate();
+            System.out.println("ligne efface: " + row);
+            
+    }   catch (SQLException ex) {
+            Logger.getLogger(DAOcours.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override
     public boolean update(Cours object) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 
     @Override
     public Cours find(int id) {

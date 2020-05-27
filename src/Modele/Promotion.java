@@ -11,8 +11,8 @@ package Modele;
  */
 public class Promotion {
     
-    private int id;
-    private String nom;
+    private int id_Promotion;
+    private String nom_Promotion;
     
     /**
      *Constructeur par defaut
@@ -20,33 +20,45 @@ public class Promotion {
     public Promotion () {}
     
     
-    public Promotion(int id, String nom)
+    public Promotion(int id_Promotion, String nom_Promotion)
     {
-        this.id=id;
-        this.nom=nom;
+        this.id_Promotion=id_Promotion;
+        this.nom_Promotion=nom_Promotion;
+    }
+
+    
+
+    public String toString()
+    {
+        return "id_Promotion: "+ this.id_Promotion + "nom: " + this.nom_Promotion;
     }
     
     
     ////////////////////// GETTER AND SETTER /////////////////////////
+
+    /**
+     *
+     * @return
+     */
     
-    public int getid()
+    public int getid_Promotion()
     {
-        return id;
+        return id_Promotion;
     }
-    public void setid(int id)
+    public void setid_Promotion(int id_Promotion)
     {
-        this.id=id;
+        this.id_Promotion=id_Promotion;
     }
     
     
-    public String getnom()
+    public String getnom_Promotion()
     {
-        return nom;
+        return nom_Promotion;
     }
     
-    public void setnom(String nom)
+    public void setnom_Promotion(String nom_Promotion)
     {
-        this.nom=nom;
+        this.nom_Promotion=nom_Promotion;
     }
     
     

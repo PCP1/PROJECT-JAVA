@@ -9,24 +9,34 @@ package Modele;
  *
  * @author pcane
  */
-public class Groupe extends Enseignant{
-    private int id_groupe;
+public class Groupe {
+    protected int id_groupe;
     private String nom_groupe;
+    private Promotion promotion;
     
     /**
      * Constructeur par defaut
      */
-    public Groupe () {}
+    public Groupe () {
+        
+    }
     
     /**
      * Constructeur surcharge
      * @param id_groupe
      * @param nom_groupe
      */
-    public Groupe(int id_groupe, String nom_groupe)
+    public Groupe(Promotion promotion, int id_groupe, String nom_groupe)
     {
+        this.promotion=promotion;
         this.id_groupe = id_groupe;
         this.nom_groupe = nom_groupe;
+    }
+
+    
+    
+    public String toString(){
+        return " id_promotion:" + this.promotion.getid_Promotion() + " nom_promotion:"+ this.promotion.getnom_Promotion()+" id_groupe:" + this.id_groupe + " nom_groupe"+ this.nom_groupe;
     }
     
     
