@@ -10,11 +10,45 @@ package Modele;
  * @author pcane
  */
 public class Seance_Salles {
-    private int Seance;
-    private int Salle;
+    
+    protected int id_seance;
+    protected int id_salle;    
     
     public Seance_Salles()
+    {  
+    }
+    
+    public Seance_Salles(int id_seance, int id_salle)
+    {        
+        this.id_seance=id_seance;
+        this.id_salle=id_salle;
+    }
+    
+    @Override
+    public String toString()
     {
-        
+        return "ID Seance : " + this.id_seance + "ID Salle :" + this.id_salle;
+    }
+    
+    ///////////////////////// GETTER AND SETTER ///////////////////////////////////
+    
+    
+    public int getid_seance()
+    {
+        return id_seance;
+    }
+    
+    public void setid_seance(int id_seance)
+    {
+        this.id_seance=id_seance;
+    }
+    
+    public int getid_salle()
+    {
+        return id_salle;
+    }
+    
+    public void setid_salle(int id_salle){
+        this.id_salle=id_salle;
     }
 }
