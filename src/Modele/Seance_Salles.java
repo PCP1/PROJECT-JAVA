@@ -27,7 +27,7 @@ public class Seance_Salles {
     @Override
     public String toString()
     {
-        return "ID Seance : " + this.id_seance + "ID Salle :" + this.id_salle;
+        return "ID Seance:" + this.id_seance + " ID Salle:" + this.id_salle;
     }
     
     ///////////////////////// GETTER AND SETTER ///////////////////////////////////

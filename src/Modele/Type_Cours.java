@@ -25,7 +25,7 @@ public class Type_Cours {
     @Override
     public String toString()
     {
-        return "Type Cours : " + this.id_typecours + "Nom du cours : " + this.nom_typecours;
+        return "Type Cours:" + this.id_typecours + " Nom du cours : " + this.nom_typecours;
     }
     
      ///////////////////////// GETTER AND SETTER ///////////////////////////////////
@@ -35,7 +35,7 @@ public class Type_Cours {
         return id_typecours;
     }
     
-    public void setid(int id_typecours)
+    public void setid_typecours(int id_typecours)
     {
         this.id_typecours=id_typecours;
     }

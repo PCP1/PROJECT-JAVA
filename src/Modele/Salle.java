@@ -25,15 +25,21 @@ public class Salle extends Site
     }
     
     
-    public Salle(int id_salle, String nom_salle, int capacite_salle){
-        
+    public Salle(int id_salle, int id_site, String nom_site, String nom_salle, int capacite_salle){
+        super(id_site, nom_site);
+        this.id_salle=id_salle;
+        this.nom_salle=nom_salle;
+        this.capacite_salle=capacite_salle;
+    }
+    public String toString(){
+        return "id salle:"+this.id_salle+" nom site:"+this.nom_salle+" capacite salle:"+this.capacite_salle+" id site:"+this.id_site;
     }
     
     
     
 ///////////////// GETTER AND SETTER /////////////////////
     
-    public int getid()
+    public int getid_salle()
     {
         return id_salle;
     }

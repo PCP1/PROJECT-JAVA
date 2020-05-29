@@ -11,11 +11,27 @@ import DataAcessObject.DAOcours;
 import DataAcessObject.DAOenseignant;
 import DataAcessObject.DAOetudiant;
 import DataAcessObject.DAOgroupe;
+import DataAcessObject.DAOpromotion;
+import DataAcessObject.DAOsalle;
+import DataAcessObject.DAOseance;
+import DataAcessObject.DAOseance_enseignants;
+import DataAcessObject.DAOseance_groupe;
+import DataAcessObject.DAOseance_salles;
+import DataAcessObject.DAOsite;
+import DataAcessObject.DAOtype_cours;
 import DataAcessObject.DAOutilisateur;
 import Modele.Cours;
 import Modele.Enseignant;
 import Modele.Etudiant;
 import Modele.Groupe;
+import Modele.Promotion;
+import Modele.Salle;
+import Modele.Seance;
+import Modele.Seance_Enseignants;
+import Modele.Seance_Groupe;
+import Modele.Seance_Salles;
+import Modele.Site;
+import Modele.Type_Cours;
 import Modele.Utilisateur;
 
 
@@ -29,27 +45,32 @@ public class PROJETJAVA {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-      
-       DAO<Groupe> groupedao;
-        groupedao = new DAOgroupe(new Connect().getConnection());
-        
+      /*
+       DAO<Site> sitedao;
+       sitedao = new DAOsite(new Connect().getConnection());
             
           
-            Groupe groupe = new Groupe();
-            groupe.setnom_groupe("TD04");
-            
-            groupedao.create(groupe);            
+           Site site;
+           site = sitedao.find(1);
+            System.out.println("salle du groupe: "+site.toString());
+            */
         
         
-        /* DAO<Cours> coursdao;
-        coursdao = new DAOcours(new Connect().getConnection());  
+        DAO<Type_Cours> type_coursdao;
+        type_coursdao = new DAOtype_cours(new Connect().getConnection());  
         
-        Cours cours = new Cours();
+        Type_Cours type_cours= new Type_Cours();
         
-        cours.setid(4);
+        type_cours.setnom("Travaux Dirigés");
+        type_coursdao.create(type_cours);
+       
         
         
-        coursdao.delete(cours);
+        
+        
+        
+        
+       // System.out.println("Promotion:"+ promotion.toString());
         
         /*
       DAO<Etudiant> etudiantdao;

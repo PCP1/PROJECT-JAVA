@@ -5,27 +5,81 @@
  */
 package DataAcessObject;
 
+import Modele.Cours;
+import Modele.Enseignant;
 import Modele.Seance;
+import Modele.Type_Cours;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author pcane
  */
 public class DAOseance extends DAO<Seance>{
+    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver"; 
+    public static final String URL="jdbc:mysql://localhost/hyperplanning";
+    public static final String USERNAME="root";
+    public static final String PASSWORD="";
+    
+    private static final String DELETE_QUERY="DELETE FROM `seance` WHERE seance.ID_Seance= ?";
 
+    private static final String INSERT_QUERY="INSERT INTO seance( Semaine, Date, HeureDebut, HeureFin, Etat, ID_Cours, ID_TypeCours) VALUES( ? , ? , ?, ?, ?, ?, ?)";
+
+    
     public DAOseance(Connection conn) {
         super(conn);
     }
 
     @Override
-    public boolean create(Seance object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean create(Seance seance) {
+        try{
+            PreparedStatement ps = this.connect.prepareStatement(INSERT_QUERY);
+            //ps.setObject(1, enseignant.getcours().getid_cours());
+            //ps.setObject(2, enseignant.getcours().getnom_cours());
+            ps.setString(1, seance.getSemaine());
+            ps.setString(2, seance.getDate());
+            ps.setInt(3, seance.getheure_debut());
+            ps.setInt(4, seance.getheure_fin());
+            ps.setString(2, seance.getetat());
+            
+            
+            ps.executeUpdate();
+            
+            System.out.println("successfull insertion");
+    }   catch (SQLException ex) {
+            Logger.getLogger(DAOseance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override
-    public boolean delete(Seance object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean delete(Seance seance) {
+       
+            
+        try{
+            PreparedStatement ps = this.connect.prepareStatement(DELETE_QUERY);
+            ps.setInt(1, seance.getid_senace());
+            int row = ps.executeUpdate();
+            System.out.println("seance effacee: "+row);
+            /*
+            PreparedStatement ps2 = this.connect.prepareStatement(DELETE_QUERY2);
+            ps.setInt(1, utilisateur.getid());
+            int row2 = ps.executeUpdate();
+            System.out.println("ligne efface: " + row2);
+            */
+            
+            
+        }   catch (SQLException ex) {
+                Logger.getLogger(DAOenseignant.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     @Override
@@ -35,6 +89,33 @@ public class DAOseance extends DAO<Seance>{
 
     @Override
     public Seance find(int id) {
+        /*Seance seance = new Seance();
+        
+        try{
+            ResultSet result =this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM `seance` WHERE seance.ID_Seance= "+id);
+                    
+            
+            if(result.first())
+            {
+                
+                seance = new Seance(
+                        id,
+                        result.getString("seance.Semaine"),
+                        result.getString("seance.Date"),
+                        result.getInt("seance.HeureDebut"),
+                        result.getInt("seance.HeureFin"),
+                        result.getString("seance.Etat"),
+                        new Cours(result.getInt("seance.ID_Cours")),
+                        new Type_Cours(result.getInt("seance.ID_TypeCours"), result.getString("seance.Nom_TypeCours"))
+                       
+                        ); 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return seance;*/
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -30,7 +30,7 @@ public class Promotion {
 
     public String toString()
     {
-        return "id_Promotion: "+ this.id_Promotion + "nom: " + this.nom_Promotion;
+        return "id_Promotion:"+ this.id_Promotion + " nom:" + this.nom_Promotion;
     }
     
     

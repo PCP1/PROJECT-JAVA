@@ -32,6 +32,11 @@ public class Site {
         
     }
     
+    public String toString()
+    {
+        return "id site:"+this.id_site+" nom du site:"+this.nom_site;
+    }
+    
     ////////////////// GETTER AND SETTER ////////////////////////
     
     public int getid_site()

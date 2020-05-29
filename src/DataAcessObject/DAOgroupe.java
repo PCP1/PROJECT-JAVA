@@ -5,8 +5,6 @@
  */
 package DataAcessObject;
 
-import Modele.Cours;
-import Modele.Enseignant;
 import Modele.Groupe;
 import Modele.Promotion;
 import java.sql.Connection;
