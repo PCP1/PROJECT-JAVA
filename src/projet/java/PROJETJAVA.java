@@ -55,7 +55,7 @@ public class PROJETJAVA {
             System.out.println("salle du groupe: "+site.toString());
             */
         
-        
+        /*
         DAO<Type_Cours> type_coursdao;
         type_coursdao = new DAOtype_cours(new Connect().getConnection());  
         
@@ -63,8 +63,7 @@ public class PROJETJAVA {
         
         type_cours.setnom("Travaux Dirigés");
         type_coursdao.create(type_cours);
-       
-        
+       */
         
         
         
@@ -98,20 +97,23 @@ public class PROJETJAVA {
         
         enseignantdao.create(enseignant);
         */
-        /*
+        
         DAO<Utilisateur> utilisateurdao;
         utilisateurdao = new DAOutilisateur(new Connect().getConnection());
         
             
           
-            Utilisateur utilisateur = new Utilisateur();
-            utilisateur.setemail("lucas.marrac@edu.ece.fr");
+           Utilisateur utilisateur = new Utilisateur();
+            /*utilisateur.setemail("lucas.marrac@edu.ece.fr");
             utilisateur.setpassword("mdplucas");
             utilisateur.setnom("Marrac");
             utilisateur.setprenom("Lucas");
             utilisateur.setdroit(4);
-             utilisateurdao.create(utilisateur);
-            System.out.println("Utilisateur:" +utilisateur.toString());*/
+            utilisateurdao.create(utilisateur);
+             Utilisateur utilisateur=utilisateurdao.find(400007);*/
+            utilisateur.setid(400003);
+            utilisateurdao.delete(utilisateur);
+           
         }
    
     }

@@ -57,7 +57,10 @@ public class Utilisateur {
         this.droit = utilisateur.droit;
     }*/
 
-   
+   public String toString()
+   {
+       return "id:"+this.id+" nom:"+this.nom+" prenom:"+this.prenom+/*" email:"+this.email+" password:"+this.password+*/" droit:"+this.droit;
+   }
 
     
     
