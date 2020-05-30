@@ -102,8 +102,13 @@ public class PROJETJAVA {
         DAOutilisateur utilisateurdao2;
         
         utilisateurdao2 = new DAOutilisateur(new Connect().getConnection());
-        Utilisateur utilisateur = utilisateurdao2.findmail("jp.segado@edu.ece.fr");
-           */
+        Utilisateur utilisateur = utilisateurdao2.findmail("jp.segado@edu.ece.fr");*/
+       /*
+       DAOcours coursdao2;
+       
+       coursdao2= new DAOcours(new Connect().getConnection());
+       Cours cours = coursdao2.findid("Traitement du signal");*/
+           
           DAO<Utilisateur> utilisateurdao=new DAOutilisateur(new Connect().getConnection());  
           
            Utilisateur utilisateur = new Utilisateur();
@@ -120,14 +125,15 @@ public class PROJETJAVA {
                
                 Enseignant enseignant = new Enseignant();
                 Cours cours = new Cours();
+                DAOenseignant enseignantdao2 = new DAOenseignant(new Connect().getConnection());
                 
                 enseignant.setid(utilisateur.getid());
-                enseignant.setcours(cours);
+                enseignant.setcours(enseignantdao2.findid("Traitement du signal"));
                 
                 
-                enseignantdao.create(enseignant);}
-          /*  }
-            else if(utilisateur.getdroit()==4)
+                enseignantdao.create(enseignant);
+            }
+           /* else if(utilisateur.getdroit()==4)
             {
                 DAO<Etudiant> etudiantdao;
                 etudiantdao = new DAOetudiant(new Connect().getConnection());  
@@ -137,17 +143,17 @@ public class PROJETJAVA {
                 
                 etudiant.setid(utilisateur.getid());
                 etudiant.setNumero_etudiant(1);
-                etudiant.
+                etudiant.*/
         
-            etudiantdao.create(etudiant);
+                        
             }
-            Utilisateur utilisateur=utilisateurdao.find(400007);
+        /*    Utilisateur utilisateur=utilisateurdao.find(400007);
             utilisateur.setid(400004);
             utilisateurdao.create(utilisateur);*/
            
         }
    
-    }
+   
         
     
 

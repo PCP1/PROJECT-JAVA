@@ -34,7 +34,7 @@ public class Cours {
     @Override
     public String toString()
     {
-        return "cours:" + this.id_cours+"nom du cours" + this.nom_cours;
+        return " id:" + this.id_cours+" nom du cours:" + this.nom_cours;
     }
 
    

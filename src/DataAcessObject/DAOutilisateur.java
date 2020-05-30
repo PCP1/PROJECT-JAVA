@@ -5,13 +5,11 @@
  */
 package DataAcessObject;
 
-import Modele.Etudiant;
 import Modele.Utilisateur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -155,7 +153,7 @@ public class DAOutilisateur extends DAO<Utilisateur>{
                         obj,
                         result.getString("Password"),
                         result.getInt("Droit"));
-                 System.out.println("Utilisateur:" +utilisateur.toString());
+                 //System.out.println("Utilisateur:" +utilisateur.toString());
              } else{
                     System.out.println("L'utilisateur que vous recherchez n'existe pas");
             }
@@ -168,5 +166,7 @@ public class DAOutilisateur extends DAO<Utilisateur>{
                        
         return utilisateur;
     }
+    
+    
     
 }

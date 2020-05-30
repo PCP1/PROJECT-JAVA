@@ -36,17 +36,21 @@ public class DAOenseignant extends DAO<Enseignant>{
     }
 
     @Override
-    public boolean create(Enseignant enseignant) {
+    public boolean create(Enseignant obj) {
            
         try{
             PreparedStatement ps = this.connect.prepareStatement(INSERT_QUERY);
             //ps.setObject(1, enseignant.getcours().getid_cours());
             //ps.setObject(2, enseignant.getcours().getnom_cours());
-            ps.setInt(1, enseignant.getid());
-            ps.setInt(2, 1);
+            ps.setInt(1, obj.getid());
+            ps.setInt(2, obj.getcours().getid_cours());
             
-        
-            ps.executeUpdate();
+            int result=ps.executeUpdate();
+            if (result==1){
+                System.out.println("successfull insertion");
+                //obj.setid((this.findid(obj.getcours().getnom_cours())).getid_cours());
+                return true;
+            }
             
             System.out.println("successfull insertion");
        
@@ -63,11 +67,11 @@ public class DAOenseignant extends DAO<Enseignant>{
      * @return
      */
     @Override
-    public boolean delete (Enseignant enseignant){
+    public boolean delete (Enseignant obj){
             
         try{
             PreparedStatement ps = this.connect.prepareStatement(DELETE_QUERY);
-            ps.setInt(1, enseignant.getid());
+            ps.setInt(1, obj.getid());
             int row = ps.executeUpdate();
             System.out.println("ligne efface: "+row);
             /*
@@ -88,7 +92,7 @@ public class DAOenseignant extends DAO<Enseignant>{
 
     
     @Override
-    public boolean update(Enseignant object) {
+    public boolean update(Enseignant obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -121,6 +125,28 @@ public class DAOenseignant extends DAO<Enseignant>{
         }
         return enseignant;
     }
-
+    
+    public Cours findid(String obj) 
+    {
+        Cours cours = new Cours();
+         try{
+            ResultSet result;
+            result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM `cours` WHERE Nom_Cours= '"+obj+"'");
+            if (result.first()){
+                cours = new Cours(result.getInt("ID_Cours"), result.getString("Nom_Cours"));
+                  System.out.println("Cours:" +cours.toString());
+             }else{
+                System.out.println("Le cours que vous cherchez n'existe pas");
+            }
+                
+            } catch (SQLException ex) {
+            Logger.getLogger(DAOcours.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return cours;
+    
+    }
     
 }
