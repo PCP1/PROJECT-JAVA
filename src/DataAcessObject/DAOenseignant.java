@@ -29,7 +29,7 @@ public class DAOenseignant extends DAO<Enseignant>{
         private static final String DELETE_QUERY="DELETE FROM `enseignant` WHERE enseignant.ID_utilisateur= ?";
         private static final String DELETE_QUERY2="DELETE FROM `utilisateur` WHERE utilisateur.ID_utilisateur= ?";
         
-        private static final String INSERT_QUERY="INSERT INTO enseignant( ID_cours, Nom_Cours, Nom_enseignant, Prenom_enseignant) VALUES( ? , ? , ? , ?)";
+        private static final String INSERT_QUERY="INSERT INTO enseignant( ID_Utilisateur, ID_cours) VALUES(?, ? )";
         
     public DAOenseignant(Connection conn) {
         super(conn);
@@ -42,10 +42,9 @@ public class DAOenseignant extends DAO<Enseignant>{
             PreparedStatement ps = this.connect.prepareStatement(INSERT_QUERY);
             //ps.setObject(1, enseignant.getcours().getid_cours());
             //ps.setObject(2, enseignant.getcours().getnom_cours());
-            ps.setInt(1, 1);
-            ps.setString(2, "maths");
-            ps.setString(3, enseignant.getnom());
-            ps.setString(4, enseignant.getprenom());
+            ps.setInt(1, enseignant.getid());
+            ps.setInt(2, 1);
+            
         
             ps.executeUpdate();
             
@@ -107,8 +106,9 @@ public class DAOenseignant extends DAO<Enseignant>{
             {
                 
                 enseignant = new Enseignant(
+                        
                         new Cours(result.getInt("ID_Cours"), "Traitement du signal"),
-                        id, 
+                        id,
                         result.getString("utilisateur.Nom"),
                         result.getString("utilisateur.Prenom"),
                         result.getString("utilisateur.Email"),

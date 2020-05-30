@@ -5,6 +5,7 @@
  */
 package DataAcessObject;
 
+import Modele.Etudiant;
 import Modele.Utilisateur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,39 +30,42 @@ public class DAOutilisateur extends DAO<Utilisateur>{
         private static final String DELETE_QUERY2="DELETE FROM `enseignant` WHERE enseignant.ID_utilisateur= ?";
         private static final String DELETE_QUERY3="DELETE FROM `etudiant` WHERE etudiant.ID_utilisateur= ?";
 
-        private static final String INSERT_QUERY="INSERT INTO utilisateur(Email, Password, Nom, Prenom, Droit) VALUES(?, ?, ?, ?, ?)";
-        private static final String VERIFIE_QUERY="SELECT * utilisateur WHERE EXISTS(SELECT * FROM utilisateur WHERE utilisateur.Email=?)";
+        private static final String INSERT_QUERY="INSERT INTO utilisateur(ID_Utilisateur, Email, Password, Nom, Prenom, Droit) VALUES(?, ?, ?, ?, ?, ?)";
+        
+        private static final String VERIFIE_QUERY="SELECT * utilisateur WHERE EXISTS(SELECT * FROM utilisateur WHERE utilisateur.Email = ?)";
                 
                 
                 
-        //private satatic final String SELECT_QUERY = "SELECT * FROM utilisateur UNION SELECT * FROM enseignant WHERE ID_Utilisateur =?" 
+         
     public DAOutilisateur(Connection conn) {
         super(conn);
     }
     
 
     @Override
-    public boolean create(Utilisateur utilisateur) {
+    public boolean create(Utilisateur obj) {
         try{
             PreparedStatement ps = this.connect.prepareStatement(INSERT_QUERY);
-            ps.setString(1, utilisateur.getemail());
-            ps.setString(2, utilisateur.getpassword());
-            ps.setString(3, utilisateur.getnom());
-            ps.setString(4, utilisateur.getprenom());
-            ps.setInt(5, utilisateur.getdroit());
+            ps.setInt(1, obj.getid());
+            ps.setString(2, obj.getemail());
+            ps.setString(3, obj.getpassword());
+            ps.setString(4, obj.getnom());
+            ps.setString(5, obj.getprenom());
+            ps.setInt(6, obj.getdroit());
             
+            int result = ps.executeUpdate();
             
-            ps.executeUpdate();
-            
-           
-            
-            System.out.println("successfull insertion");
-       
-    }       catch (SQLException ex) {
-                Logger.getLogger(DAOutilisateur.class.getName()).log(Level.SEVERE, null, ex);
+            if(result==1){
+                System.out.println("successfull insertion");
+                obj.setid(this.findmail(obj.getemail()).getid());
+                
+                return true;
+                
             }
-            return false;
-        
+    }catch (SQLException ex){
+        Logger.getLogger(DAOutilisateur.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        return false;  
     }
 
     @Override
@@ -82,24 +86,8 @@ public class DAOutilisateur extends DAO<Utilisateur>{
               System.out.println("Il n'y a pas d'utilisateur enregistré. Delete inutile");
            }else{
                System.out.println("ligne efface: "+row+" "+row2+" "+row3); 
-               /*Utilisateur utilisateur = new Utilisateur();
-                try{
-                    ResultSet result = this.connect.createStatement(
-                            ResultSet.TYPE_SCROLL_INSENSITIVE,
-                            ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM utilisateur WHERE droit = ?");
-
-                       if(utilisateur.getdroit()==4){
-                           int row3 = ps3.executeUpdate();
-                           System.out.println("ligne efface: "+row+" "+row3);
-                       }
-                       else if (utilisateur.getdroit()==3){
-                           int row3 = ps3.executeUpdate();
-                           System.out.println("ligne efface: "+row+" "+row2);
-                       }
-                    }catch (SQLException ex){
-                        Logger.getLogger(DAOutilisateur.class.getName()).log(Level.SEVERE, null, ex);
-                    }*/
-                }
+               
+            }
 
         }catch (SQLException ex) {
               Logger.getLogger(DAOutilisateur.class.getName()).log(Level.SEVERE, null, ex);
@@ -125,7 +113,8 @@ public class DAOutilisateur extends DAO<Utilisateur>{
          
             if(result.next())
             {
-                utilisateur = new Utilisateur(id, result.getString("utilisateur.Nom"), 
+                utilisateur = new Utilisateur(id, 
+                        result.getString("utilisateur.Nom"), 
                         result.getString("Prenom"),
                         result.getString("Email"),
                         result.getString("Password"),
@@ -144,8 +133,40 @@ public class DAOutilisateur extends DAO<Utilisateur>{
         return utilisateur;
             
      }
-
+    
+    /**
+     *
+     * @param obj
+     * @return
+     */
+    public Utilisateur findmail(String obj){
+        Utilisateur utilisateur = new Utilisateur();
+        try{
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM utilisateur WHERE Email = '"+obj+"'");
+            
+            
+            
+             if(result.next()){
+                 utilisateur = new Utilisateur(result.getInt("utilisateur.ID_Utilisateur"), 
+                        result.getString("utilisateur.Nom"), 
+                        result.getString("Prenom"),
+                        obj,
+                        result.getString("Password"),
+                        result.getInt("Droit"));
+                 System.out.println("Utilisateur:" +utilisateur.toString());
+             } else{
+                    System.out.println("L'utilisateur que vous recherchez n'existe pas");
+            }
+            
+            
+            
+        }catch (SQLException ex) {
+            Logger.getLogger(DAOutilisateur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                       
+        return utilisateur;
+    }
     
 }
-
- 

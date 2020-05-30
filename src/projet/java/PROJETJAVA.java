@@ -98,21 +98,52 @@ public class PROJETJAVA {
         enseignantdao.create(enseignant);
         */
         
-        DAO<Utilisateur> utilisateurdao;
-        utilisateurdao = new DAOutilisateur(new Connect().getConnection());
+       /*
+        DAOutilisateur utilisateurdao2;
         
-            
+        utilisateurdao2 = new DAOutilisateur(new Connect().getConnection());
+        Utilisateur utilisateur = utilisateurdao2.findmail("jp.segado@edu.ece.fr");
+           */
+          DAO<Utilisateur> utilisateurdao=new DAOutilisateur(new Connect().getConnection());  
           
            Utilisateur utilisateur = new Utilisateur();
-            /*utilisateur.setemail("lucas.marrac@edu.ece.fr");
-            utilisateur.setpassword("mdplucas");
-            utilisateur.setnom("Marrac");
-            utilisateur.setprenom("Lucas");
-            utilisateur.setdroit(4);
+            utilisateur.setemail("a.mockber@edu.ece.fr");
+            utilisateur.setpassword("mdpmockber");
+            utilisateur.setnom("Mockber");
+            utilisateur.setprenom("Arash");
+            utilisateur.setdroit(3);
             utilisateurdao.create(utilisateur);
-             Utilisateur utilisateur=utilisateurdao.find(400007);*/
-            utilisateur.setid(400003);
-            utilisateurdao.delete(utilisateur);
+            
+            if(utilisateur.getdroit()==3){
+                DAO<Enseignant> enseignantdao;
+                enseignantdao = new DAOenseignant(new Connect().getConnection());
+               
+                Enseignant enseignant = new Enseignant();
+                Cours cours = new Cours();
+                
+                enseignant.setid(utilisateur.getid());
+                enseignant.setcours(cours);
+                
+                
+                enseignantdao.create(enseignant);}
+          /*  }
+            else if(utilisateur.getdroit()==4)
+            {
+                DAO<Etudiant> etudiantdao;
+                etudiantdao = new DAOetudiant(new Connect().getConnection());  
+        
+                Etudiant etudiant = new Etudiant();
+                Groupe groupe= new Groupe();
+                
+                etudiant.setid(utilisateur.getid());
+                etudiant.setNumero_etudiant(1);
+                etudiant.
+        
+            etudiantdao.create(etudiant);
+            }
+            Utilisateur utilisateur=utilisateurdao.find(400007);
+            utilisateur.setid(400004);
+            utilisateurdao.create(utilisateur);*/
            
         }
    

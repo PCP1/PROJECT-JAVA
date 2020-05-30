@@ -12,6 +12,7 @@ package Modele;
 public class Etudiant extends Utilisateur {
     
     private int numero_etudiant;
+    private Groupe groupe;
     
     /**
      *Constructeur par defaut
@@ -21,10 +22,11 @@ public class Etudiant extends Utilisateur {
         super();
     }
     
-    public Etudiant(int numero_etudiant, int id, String nom, String prenom, String email, String password, int droit)
+    public Etudiant(int numero_etudiant, int id, String nom, String prenom, String email, String password, int droit/*, Groupe ID_Groupe*/)
     {
         super(id, nom, prenom, email, password, droit);
         this.numero_etudiant = numero_etudiant;
+       // this.groupe=ID_Groupe;
     }
     
     //////////////////////////// GETTER AND SETTER ///////////////////////////////////////////////////////////
@@ -46,7 +48,7 @@ public class Etudiant extends Utilisateur {
     
     public String toString()
     {
-        return "numero_etudiant: "+ this.numero_etudiant+ "id: " + this.id + "nom:" + this.nom + "prenom: "+this.prenom + "email: "+ this.email + "password: "+ this.password;
+        return "numero_etudiant: "+ this.numero_etudiant+ "id: " + this.id + "nom:" + this.nom + "prenom: "+this.prenom + "email: "+ this.email + "password: "+ this.password;//+"id_groupe: "+this.groupe;
     }
     
 }
