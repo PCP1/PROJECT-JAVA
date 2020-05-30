@@ -5,7 +5,10 @@
  */
 package DataAcessObject;
 
+import Modele.Cours;
 import Modele.Etudiant;
+import Modele.Groupe;
+import Modele.Promotion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -101,6 +104,35 @@ public class DAOetudiant extends DAO<Etudiant>{
            e.printStackTrace();
         }
         return etudiant;
+    }
+    
+    
+    
+    public Groupe findid(String obj)
+    {
+        Groupe groupe = new Groupe();
+         try{
+            ResultSet result;
+            result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM `groupe` WHERE Nom_Groupe= '"+obj+"'");
+            if (result.first()){
+                groupe = new Groupe(
+                         new Promotion (result.getInt("ID_Promotion"), result.getString("Nom_Promotion")),
+                        result.getInt("groupe.ID_Groupe"),
+                        result.getString("groupe.Nom_Groupe")
+                );
+                  System.out.println("Cours:" +groupe.toString());
+             }else{
+                System.out.println("Le cours que vous cherchez n'existe pas");
+            }
+                
+            } catch (SQLException ex) {
+            Logger.getLogger(DAOcours.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return groupe;
+    
     }
     
 }

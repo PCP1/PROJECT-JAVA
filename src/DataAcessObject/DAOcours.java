@@ -84,31 +84,4 @@ public class DAOcours extends DAO<Cours>{
         return cours;
     }
     
-    /**
-     *
-     * @param obj
-     * @return
-     */
-    /*public Cours findid(String obj) 
-    {
-        Cours cours = new Cours();
-         try{
-            ResultSet result;
-            result = this.connect.createStatement(
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM `cours` INNER JOIN enseignant ON cours.ID_Cours=enseignant.ID_Cours WHERE Nom_Cours='"+obj+"'");
-            if (result.next()){
-                cours = new Cours(result.getInt("ID_Cours"), result.getString("Nom_Cours"));
-                  System.out.println("Cours:" +cours.toString());
-             }else{
-                System.out.println("Le cours que vous cherchez n'existe pas");
-            }
-                
-            } catch (SQLException ex) {
-            Logger.getLogger(DAOcours.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return cours;
-    
-    }*/
 }
