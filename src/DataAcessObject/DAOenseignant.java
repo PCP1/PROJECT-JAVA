@@ -7,6 +7,7 @@ package DataAcessObject;
 
 import Modele.Cours;
 import Modele.Enseignant;
+import Modele.Seance_Enseignants;
 import Modele.Utilisateur;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -103,7 +104,7 @@ public class DAOenseignant extends DAO<Enseignant>{
         try{
             ResultSet result =this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM `enseignant` INNER JOIN utilisateur ON enseignant.ID_Utilisateur=utilisateur.ID_Utilisateur WHERE enseignant.ID_utilisateur= "+id);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM `enseignant` INNER JOIN utilisateur ON enseignant.ID_Utilisateur=utilisateur.ID_Utilisateur WHERE enseignant.ID_utilisateur="+id+" AND Droit=3 ");
                     
             
             if(result.first())
@@ -113,20 +114,46 @@ public class DAOenseignant extends DAO<Enseignant>{
                         
                         new Cours(result.getInt("ID_Cours"), "Traitement du signal"),
                         id,
-                        result.getString("utilisateur.Nom"),
-                        result.getString("utilisateur.Prenom"),
+                       
                         result.getString("utilisateur.Email"),
                         result.getString("utilisateur.Password"),
+                         result.getString("utilisateur.Nom"),
+                        result.getString("utilisateur.Prenom"),
                         result.getInt("utilisateur.Droit")
                         ); 
+                System.out.println("Enseignant:"+enseignant.toString());
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return enseignant;
     }
+    ////////////////////////////UPDATE//////////////////////////////////////
+    public boolean find2(int id, int id2) {
+        Seance_Enseignants seance_enseignant =new Seance_Enseignants();
+        
+        try{
+            ResultSet result =this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM `seance_enseignants` WHERE ID_Enseignant="+id+" AND ID_Seance="+id2);
+                    
+            
+            if(result.first())
+            {
+                
+                seance_enseignant = new Seance_Enseignants(id,id); 
+                System.out.println("Seance_Enseignant:"+seance_enseignant.toString());
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
     
-    public Cours findid(String obj) 
+    
+    public Cours findcours(String obj) 
     {
         Cours cours = new Cours();
          try{
@@ -148,5 +175,33 @@ public class DAOenseignant extends DAO<Enseignant>{
         return cours;
     
     }
-    
+    public  Utilisateur findEnseignant(String obj){
+        Utilisateur utilisateur = new Utilisateur();
+        try{
+            ResultSet result = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM utilisateur WHERE Nom = '"+obj+"' AND Droit=3" );
+            
+            
+            
+             if(result.next()){
+                 utilisateur = new Utilisateur(result.getInt("utilisateur.ID_Utilisateur"), 
+                        result.getString("utilisateur.Nom"), 
+                        result.getString("Prenom"),
+                        obj,
+                        result.getString("Password"),
+                        result.getInt("Droit"));
+                 System.out.println("Utilisateur:" +utilisateur.toString());
+             } else{
+                    System.out.println("L'utilisateur que vous recherchez n'existe pas");
+            }
+            
+            
+            
+        }catch (SQLException ex) {
+            Logger.getLogger(DAOutilisateur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                       
+        return utilisateur;
+    }
 }

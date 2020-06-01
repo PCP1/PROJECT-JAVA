@@ -33,8 +33,13 @@ public class DAOcours extends DAO<Cours>{
             PreparedStatement ps = this.connect.prepareStatement(INSERT_QUERY);
             ps.setString(1, cours.getnom_cours());
             
-            ps.executeUpdate();
-            System.out.println("successfull insertion");
+            int result = ps.executeUpdate();
+            
+            if(result==1){
+                System.out.println("successfull insertion");
+                return true;
+            }
+           
             
     }   catch (SQLException ex) {
             Logger.getLogger(DAOcours.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,8 +81,13 @@ public class DAOcours extends DAO<Cours>{
              if(result.first())
              {
                  cours = new Cours(id, result.getString("Nom"));
+                   System.out.println("Cours:" +cours.toString());
                   
              }
+             else{
+                 System.out.println("Le cours n'existe pas");
+            }
+             
         } catch (SQLException e) {
             e.printStackTrace();
         }

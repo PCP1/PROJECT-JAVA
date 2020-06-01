@@ -153,7 +153,7 @@ public class DAOutilisateur extends DAO<Utilisateur>{
                         obj,
                         result.getString("Password"),
                         result.getInt("Droit"));
-                 //System.out.println("Utilisateur:" +utilisateur.toString());
+                 System.out.println("Utilisateur:" +utilisateur.toString());
              } else{
                     System.out.println("L'utilisateur que vous recherchez n'existe pas");
             }

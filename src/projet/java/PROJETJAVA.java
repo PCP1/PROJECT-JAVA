@@ -33,6 +33,7 @@ import Modele.Seance_Salles;
 import Modele.Site;
 import Modele.Type_Cours;
 import Modele.Utilisateur;
+import Update.Actualiser;
 
 
 /**
@@ -85,20 +86,22 @@ public class PROJETJAVA {
         
         
         
-        /*DAO<Enseignant> enseignantdao;
-        enseignantdao = new DAOenseignant(new Connect().getConnection());
+        Actualiser actualiser = new Actualiser();
+        Enseignant enseignant=new Enseignant();
+        actualiser.EnseignantOK(enseignant);
         
-        Enseignant enseignant = new Enseignant();
-        //Cours cours = new Cours();
         
-        //enseignant.setcours(cours);
-        enseignant.setnom("Coudray");
-        enseignant.setprenom("Natalie");
         
-        enseignantdao.create(enseignant);
+        
+       
+        
+        /*DAOenseignant enseignantdao2;
+        
+        enseignantdao2 = new DAOenseignant(new Connect().getConnection());
+        Utilisateur enseignant = enseignantdao2.findEnseignant("Segado");
         */
         
-       /*
+        /*
         DAOutilisateur utilisateurdao2;
         
         utilisateurdao2 = new DAOutilisateur(new Connect().getConnection());
@@ -108,7 +111,11 @@ public class PROJETJAVA {
        
        coursdao2= new DAOcours(new Connect().getConnection());
        Cours cours = coursdao2.findid("Traitement du signal");*/
-           
+        
+       
+       
+       
+       /* 
           DAO<Utilisateur> utilisateurdao=new DAOutilisateur(new Connect().getConnection());  
           
            Utilisateur utilisateur = new Utilisateur();
@@ -133,7 +140,7 @@ public class PROJETJAVA {
                 
                 enseignantdao.create(enseignant);
             }
-           /* else if(utilisateur.getdroit()==4)
+            else if(utilisateur.getdroit()==4)
             {
                 DAO<Etudiant> etudiantdao;
                 etudiantdao = new DAOetudiant(new Connect().getConnection());  
@@ -143,8 +150,26 @@ public class PROJETJAVA {
                 
                 etudiant.setid(utilisateur.getid());
                 etudiant.setNumero_etudiant(1);
-                etudiant.*/
-        
+                etudiant.
+           
+          */
+         
+         
+         
+          
+          /* DAO<Seance> seancedao;
+            seancedao = new DAOseance(new Connect().getConnection());
+            
+            Seance seance = new Seance();
+            seance.setid_seance(2);
+            /*seance.setSemaine(2);
+            seance.setDate(java.sql.Date.valueOf("2020-04-05"));
+            seance.setheure_debut(java.sql.Time.valueOf("14:00:00"));
+            seance.setheure_fin(java.sql.Time.valueOf("15:30:00"));
+            seance.setetat("non annulé");
+            
+            seancedao.delete(seance);*/
+            
                         
             }
         /*    Utilisateur utilisateur=utilisateurdao.find(400007);

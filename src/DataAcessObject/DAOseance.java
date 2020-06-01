@@ -41,11 +41,13 @@ public class DAOseance extends DAO<Seance>{
             PreparedStatement ps = this.connect.prepareStatement(INSERT_QUERY);
             //ps.setObject(1, enseignant.getcours().getid_cours());
             //ps.setObject(2, enseignant.getcours().getnom_cours());
-            ps.setString(1, seance.getSemaine());
-            ps.setString(2, seance.getDate());
-            ps.setInt(3, seance.getheure_debut());
-            ps.setInt(4, seance.getheure_fin());
-            ps.setString(2, seance.getetat());
+            ps.setInt(1, seance.getSemaine());
+            ps.setDate(2, seance.getDate());
+            ps.setTime(3, seance.getheure_debut());
+            ps.setTime(4, seance.getheure_fin());
+            ps.setString(5, seance.getetat());
+            ps.setInt(6, 2);
+            ps.setInt(7,3);
             
             
             ps.executeUpdate();
@@ -89,7 +91,7 @@ public class DAOseance extends DAO<Seance>{
 
     @Override
     public Seance find(int id) {
-        /*Seance seance = new Seance();
+        Seance seance = new Seance();
         
         try{
             ResultSet result =this.connect.createStatement(
@@ -102,21 +104,21 @@ public class DAOseance extends DAO<Seance>{
                 
                 seance = new Seance(
                         id,
-                        result.getString("seance.Semaine"),
-                        result.getString("seance.Date"),
-                        result.getInt("seance.HeureDebut"),
-                        result.getInt("seance.HeureFin"),
+                        result.getInt("seance.Semaine"),
+                        result.getDate("seance.Date"),
+                        result.getTime("seance.HeureDebut"),
+                        result.getTime("seance.HeureFin"),
                         result.getString("seance.Etat"),
-                        new Cours(result.getInt("seance.ID_Cours")),
-                        new Type_Cours(result.getInt("seance.ID_TypeCours"), result.getString("seance.Nom_TypeCours"))
-                       
-                        ); 
+                        new Cours(result.getInt("seance.ID_Cours"), "abc"),
+                        new Type_Cours(result.getInt("seance.ID_TypeCours"),"abc")
+                       ); 
+                System.out.println("Seance: " + seance.toString());
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return seance;*/
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return seance;
+       
     }
     
 }

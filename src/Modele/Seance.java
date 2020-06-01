@@ -5,16 +5,19 @@
  */
 package Modele;
 
+import java.sql.Date;
+import java.sql.Time;
+
 /**
  *
  * @author pcane
  */
 public class Seance {
     private int id_seance;
-    private String semaine;
-    private String date;
-    private int heure_debut;
-    private int heure_fin;
+    private int semaine;
+    private Date date;
+    private Time heure_debut;
+    private Time heure_fin;
     private String etat;
     private Cours cours;
     private Type_Cours type_cours;
@@ -23,7 +26,7 @@ public class Seance {
     {
         
     };
-    public Seance(int id_seance, String semaine, String date, int heure_debut, int heure_fin, String etat, Cours cours, Type_Cours type_cours)
+    public Seance(int id_seance, int semaine, Date date, Time heure_debut, Time heure_fin, String etat, Cours cours, Type_Cours type_cours)
     {
         this.id_seance = id_seance;
         this.semaine=semaine;
@@ -42,7 +45,7 @@ public class Seance {
     @Override
     public String toString()
     {
-        return "id:"+this.id_seance + " semaine:"+this.semaine+" date:"+this.date+" heure debut:"+this.heure_debut+ " heure fin:"+this.heure_fin+" etat:"+this.etat+" id cours:"+this.cours.id_cours+ " nom du cours:"+this.cours.getnom_cours()+" id type de cours:"+this.type_cours.getid_typecours()+" nom du type:"+this.type_cours.getnom_typecours();
+        return "id:"+this.id_seance + ", semaine:"+this.semaine+", date:"+this.date+", heure debut:"+this.heure_debut+ ", heure fin:"+this.heure_fin+", etat:"+this.etat+", id cours:"+this.cours.id_cours+", id_type de cours:"+this.type_cours.getid_typecours();
     }
 
     /**
@@ -62,56 +65,56 @@ public class Seance {
     /**
      * @return the semaine
      */
-    public String getSemaine() {
+    public int getSemaine() {
         return semaine;
     }
 
     /**
      * @param semaine the semaine to set
      */
-    public void setSemaine(String semaine) {
+    public void setSemaine(int semaine) {
         this.semaine = semaine;
     }
 
     /**
      * @return the date
      */
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
     /**
      * @param date the date to set
      */
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
     /**
      * @return the Heure_Debut
      */
-    public int getheure_debut() {
+    public Time getheure_debut() {
         return heure_debut;
     }
 
     /**
      * @param heure_debut
      */
-    public void setheure_debut(int heure_debut) {
+    public void setheure_debut(Time heure_debut) {
         this.heure_debut = heure_debut;
     }
 
     /**
      * @return the Heure_fin
      */
-    public int getheure_fin() {
+    public Time getheure_fin() {
         return heure_fin;
     }
 
     /**
      * @param heure_fin
      */
-    public void setheure_fin(int heure_fin) {
+    public void setheure_fin(Time heure_fin) {
         this.heure_fin = heure_fin;
     }
 
