@@ -40,13 +40,17 @@ public class DAOseance_salles extends DAO<Seance_Salles>{
             PreparedStatement ps = this.connect.prepareStatement(INSERT_QUERY);
             //ps.setObject(1, enseignant.getcours().getid_cours());
             //ps.setObject(2, enseignant.getcours().getnom_cours());
-            ps.setInt(1, seance_salles.getid_salle());
-            ps.setInt(2, seance_salles.getid_seance());
+            ps.setInt(1, seance_salles.getid_seance());
+            ps.setInt(2, seance_salles.getid_salle());
             
-        
-            ps.executeUpdate();
             
-            System.out.println("successfull insertion");
+            int result=ps.executeUpdate();
+            if(result==1){
+                System.out.println("successfull insertion");
+                return true;
+            }
+            
+            
        
     }   catch (SQLException ex) {
             Logger.getLogger(DAOseance_salles.class.getName()).log(Level.SEVERE, null, ex);
@@ -100,5 +104,35 @@ public class DAOseance_salles extends DAO<Seance_Salles>{
         }
         return seance_salles;
     }
+    
+    
+    ////////////////////////////UPDATE CHERCHER UNE SALLE EST OCCUPÉ OU PAS//////////////////////////////////////
+    public boolean findsalle(int id1, int id2, int id3) throws SQLException {
+        Seance_Salles seance_salle =new Seance_Salles();
+        
+        try{
+            ResultSet result =this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM seance_salles INNER JOIN salle ON seance_salles.ID_Salle=salle.ID_Salle="+id2+" WHERE seance_salles.ID_Seance="+id1);
+                    
+            
+            if(result.next())
+            {
+                ResultSet result2 =this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM salle  WHERE Capacite_Salle>="+id3+"AND id_salle="+id2);
+                if(result2.next())
+                {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+                    
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
     
 }

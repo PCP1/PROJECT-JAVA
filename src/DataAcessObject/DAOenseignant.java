@@ -128,7 +128,7 @@ public class DAOenseignant extends DAO<Enseignant>{
         }
         return enseignant;
     }
-    ////////////////////////////UPDATE//////////////////////////////////////
+   /* ////////////////////////////UPDATE//////////////////////////////////////
     public boolean find2(int id, int id2) {
         Seance_Enseignants seance_enseignant =new Seance_Enseignants();
         
@@ -151,7 +151,7 @@ public class DAOenseignant extends DAO<Enseignant>{
         return false;
     }
     ///////////////////////////////////////////////////////////////////////
-    
+    */
     
     public Cours findcours(String obj) 
     {

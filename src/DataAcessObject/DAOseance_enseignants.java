@@ -105,4 +105,29 @@ public class DAOseance_enseignants extends DAO<Seance_Enseignants>{
         return seance_enseignants;
     }
     
+    
+    ////////////////////////////UPDATE CHERCHER SI ENSEIGNANT OCCUPÉ OU PAS//////////////////////////////////////
+    public boolean find2(int id, int id2) {
+        Seance_Enseignants seance_enseignant =new Seance_Enseignants();
+        
+        try{
+            ResultSet result =this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM `seance_enseignants` WHERE ID_Enseignant="+id+" AND ID_Seance="+id2);
+                    
+            
+            if(result.first())
+            {
+                
+                seance_enseignant = new Seance_Enseignants(id,id); 
+                System.out.println("Seance_Enseignant:"+seance_enseignant.toString());
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    
 }

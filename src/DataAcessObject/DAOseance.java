@@ -86,7 +86,11 @@ public class DAOseance extends DAO<Seance>{
 
     @Override
     public boolean update(Seance object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        /*try{
+            PreparedStatement ps = this.connect.prepareStatement("UPDATE seance SET ID_Cours=? WHERE ID_Seance=?"+);
+        */
+         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
@@ -121,4 +125,19 @@ public class DAOseance extends DAO<Seance>{
        
     }
     
+    ///////////////////////////MODIFIER LE TYPE DE COURS DE LA SEANCE /////////////////////////////
+    public void ModifierTypeSeance(int id1, int id2){
+         try{
+            PreparedStatement ps = this.connect.prepareStatement("UPDATE seance SET ID_TypeCours="+id2+" WHERE ID_Seance="+id1);
+            
+            ps.executeUpdate();
+            
+            System.out.println("successfull update");
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOseance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////
 }

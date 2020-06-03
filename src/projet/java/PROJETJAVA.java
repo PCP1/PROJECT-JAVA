@@ -34,6 +34,7 @@ import Modele.Site;
 import Modele.Type_Cours;
 import Modele.Utilisateur;
 import Update.Actualiser;
+import java.sql.SQLException;
 
 
 /**
@@ -45,7 +46,7 @@ public class PROJETJAVA {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
       /*
        DAO<Site> sitedao;
        sitedao = new DAOsite(new Connect().getConnection());
@@ -87,8 +88,9 @@ public class PROJETJAVA {
         
         
         Actualiser actualiser = new Actualiser();
-        Enseignant enseignant=new Enseignant();
-        actualiser.EnseignantOK(enseignant);
+        
+       // actualiser.EnseignantOK(11,21);
+       actualiser.SalleLibre(2, 1, 40);
         
         
         
