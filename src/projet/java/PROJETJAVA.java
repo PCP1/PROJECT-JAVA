@@ -89,8 +89,8 @@ public class PROJETJAVA {
         
         Actualiser actualiser = new Actualiser();
         
-       // actualiser.EnseignantOK(11,21);
-       actualiser.SalleLibre(2, 1, 40);
+        //actualiser.EnseignantOK(11,21);
+       actualiser.GroupOK(10, 10);
         
         
         

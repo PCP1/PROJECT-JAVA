@@ -10,9 +10,11 @@ import Modele.Enseignant;
 import Modele.Seance;
 import Modele.Type_Cours;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -140,4 +142,42 @@ public class DAOseance extends DAO<Seance>{
         }
     }
     //////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
+    //////////////////////////MODIFIER ETAT SEANCE ///////////////////////////////////////////////
+    
+    public void ModifierEtat(int id1, String etat){
+         try{
+            PreparedStatement ps = this.connect.prepareStatement("UPDATE seance SET seance.Etat= '"+etat+"'"+" WHERE ID_Seance="+id1);
+            
+            ps.executeUpdate();
+            
+            System.out.println("successfull update");
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOseance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////
+
+    //////////////////////MODIFIER JOUR ET/OU HEURE SEANCE////////////////////////////////////////
+     public void ModifierDate(int id, Date date, Time heuredebut, Time heurefin){
+         try{
+            PreparedStatement ps = this.connect.prepareStatement("UPDATE seance SET seance.Date='"+date+"', seance.HeureDebut='"+heuredebut+"', seance.HeureFin='"+heurefin+"' WHERE ID_Seance="+id);
+            
+            ps.executeUpdate();
+            
+            System.out.println("successfull update");
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOseance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////
+
+
 }
+

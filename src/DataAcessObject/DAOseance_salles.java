@@ -45,6 +45,7 @@ public class DAOseance_salles extends DAO<Seance_Salles>{
             
             
             int result=ps.executeUpdate();
+            
             if(result==1){
                 System.out.println("successfull insertion");
                 return true;
@@ -118,13 +119,16 @@ public class DAOseance_salles extends DAO<Seance_Salles>{
             
             if(result.next())
             {
+               return true;
+            }
+            else{
                 ResultSet result2 =this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM salle  WHERE Capacite_Salle>="+id3+"AND id_salle="+id2);
-                if(result2.next())
-                {
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM salle WHERE salle.ID_Salle="+id2+" AND salle.Capacite_Salle>="+id3);
+                if(!result2.next()){
                     return true;
                 }
+                
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -108,4 +108,28 @@ public class DAOseance_groupe extends DAO<Seance_Groupe>{
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    
+    ////////////////////////////UPDATE CHERCHER SI ENSEIGNANT OCCUPÉ OU PAS//////////////////////////////////////
+    public boolean findGroupe(int id1, int id2) {
+        Seance_Groupe seance_groupes =new Seance_Groupe();
+        
+        try{
+            ResultSet result =this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM `seance_groupes` WHERE ID_Groupe="+id2+" AND ID_Seance="+id1);
+                    
+            
+            if(result.first())
+            {
+                seance_groupes = new Seance_Groupe(id1,id2); 
+               System.out.println("Seance_Groupe:"+seance_groupes.toString());
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    ///////////////////////////////////////////////////////////////////////
+    
 }
