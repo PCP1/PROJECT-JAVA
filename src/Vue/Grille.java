@@ -16,7 +16,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSetMetaData;
 import java.sql.Time;
 
-import Update.RechercheInfo;
+//import Update.RechercheInfo;
 import Update.*;
 
 import projet.java.*;
